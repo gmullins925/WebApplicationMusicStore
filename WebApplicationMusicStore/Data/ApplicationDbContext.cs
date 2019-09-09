@@ -14,5 +14,6 @@ namespace WebApplicationMusicStore.Data
 		{
 		}
 		public DbSet<WebApplicationMusicStore.Models.Music> Music { get; set; }
+		public DbSet<WebApplicationMusicStore.Models.Song> Songs { get; set; }
 	}
 }

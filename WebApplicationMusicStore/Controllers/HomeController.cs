@@ -38,6 +38,11 @@ namespace WebApplicationMusicStore.Controllers
 			return View();
 		}
 
+		public IActionResult Albums()
+		{
+			return View(_context.Songs.GroupBy(x => x.Album).Select(grp => grp.First()).ToList());
+		}
+
 		public IActionResult Privacy()
 		{
 			return View();

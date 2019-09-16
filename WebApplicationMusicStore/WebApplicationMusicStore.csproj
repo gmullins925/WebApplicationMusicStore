@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\uploads\albums\" />
+    <Folder Include="wwwroot\uploads\self\" />
   </ItemGroup>
 
 </Project>

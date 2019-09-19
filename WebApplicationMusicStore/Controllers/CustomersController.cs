@@ -30,8 +30,37 @@ namespace WebApplicationMusicStore.Controllers
             return View(await _context.Customers.ToListAsync());
         }
 
-        // GET: Customers/Details/5
-        public async Task<IActionResult> Details(int? id)
+		// GET: Customers/Details/5
+		public async Task<IActionResult> Recommendations(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var customer = await _context.Customers
+				.FirstOrDefaultAsync(m => m.ID == id);
+
+			var songs = _context.Song.Where(s => s.Genre == customer.FavoriteGenre).ToList();
+
+			ViewBag.CustomerName = customer.Name;
+			ViewBag.Title = "Recommendations";
+			ViewBag.Genre = customer.FavoriteGenre;
+
+			if (songs.Count == 0)
+			{
+				ViewBag.Description = "No Recommendations for Customer";
+			}
+
+			if (customer == null)
+			{
+				return NotFound();
+			}
+
+			return View(songs);
+		}
+
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

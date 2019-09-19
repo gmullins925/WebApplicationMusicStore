@@ -20,7 +20,7 @@ namespace WebApplicationMusicStore.Controllers
 
 		public IActionResult Index()
 		{
-			return View(_context.Songs.Where(m => m.IsFeatured).ToList());
+			return View(_context.Song.Where(m => m.IsFeatured).ToList());
 		}
 
 
@@ -40,7 +40,12 @@ namespace WebApplicationMusicStore.Controllers
 
 		public IActionResult Albums()
 		{
-			return View(_context.Songs.GroupBy(x => x.Album).Select(grp => grp.First()).ToList());
+			return View(_context.Song.GroupBy(x => x.Album).Select(grp => grp.First()).ToList());
+		}
+
+		public IActionResult Songs()
+		{
+			return View(_context.Song.Where(m => m.IsActive).ToList());
 		}
 
 		public IActionResult Privacy()

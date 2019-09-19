@@ -27,7 +27,7 @@ namespace WebApplicationMusicStore.Controllers
         // GET: Songs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Songs.ToListAsync());
+            return View(await _context.Song.ToListAsync());
         }
 
         // GET: Songs/Details/5
@@ -38,7 +38,7 @@ namespace WebApplicationMusicStore.Controllers
                 return NotFound();
             }
 
-            var song = await _context.Songs
+            var song = await _context.Song
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (song == null)
             {
@@ -90,7 +90,7 @@ namespace WebApplicationMusicStore.Controllers
                 return NotFound();
             }
 
-            var song = await _context.Songs.FindAsync(id);
+            var song = await _context.Song.FindAsync(id);
             if (song == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@ namespace WebApplicationMusicStore.Controllers
                 return NotFound();
             }
 
-            var song = await _context.Songs
+            var song = await _context.Song
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (song == null)
             {
@@ -168,15 +168,15 @@ namespace WebApplicationMusicStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var song = await _context.Songs.FindAsync(id);
-            _context.Songs.Remove(song);
+            var song = await _context.Song.FindAsync(id);
+            _context.Song.Remove(song);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SongExists(int id)
         {
-            return _context.Songs.Any(e => e.Id == id);
+            return _context.Song.Any(e => e.Id == id);
         }
     }
 }
